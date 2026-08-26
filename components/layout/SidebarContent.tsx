@@ -14,6 +14,12 @@ const FRUIT_GAMES = [
     label: "가격 맞추기",
     emoji: "🍊",
     href: "/price-guess"
+  },
+  {
+    id: "draft",
+    label: "한정예산 드래프트",
+    emoji: "🍉",
+    href: "/draft"
   }
 ];
 

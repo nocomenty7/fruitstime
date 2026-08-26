@@ -43,6 +43,20 @@ const MOCK_KIRO: MockGameItem[] = [
   { id: "k10", title: "과거로 돌아가기 vs 미래로 가기", thumbnailUrl: "https://images.unsplash.com/photo-1447015237013-0e80b2786dea?q=80&w=600&auto=format&fit=crop", plays: 340000, createdAt: "2024.03.11" },
 ];
 
+// 임시 모의 데이터 (한정예산 드래프트 - 10개)
+const MOCK_DRAFT: MockGameItem[] = [
+  { id: "d1", title: "100만원으로 걸그룹 라인업 짜기", thumbnailUrl: "https://images.unsplash.com/photo-1493225457124-a3a2f308a074?q=80&w=600&auto=format&fit=crop", plays: 245000, createdAt: "2024.12.10" },
+  { id: "d2", title: "50만원으로 방구석 여행 떠나기", thumbnailUrl: "https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&w=600&auto=format&fit=crop", plays: 82000, createdAt: "2024.11.20" },
+  { id: "d3", title: "3만원으로 편의점 만수르 되기", thumbnailUrl: "https://images.unsplash.com/photo-1614088685112-0a760b71a3c8?q=80&w=600&auto=format&fit=crop", plays: 154000, createdAt: "2024.10.05" },
+  { id: "d4", title: "천만원으로 나만의 드림카 만들기", thumbnailUrl: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=600&auto=format&fit=crop", plays: 98000, createdAt: "2024.09.15" },
+  { id: "d5", title: "10만원으로 역대급 오마카세 메뉴 구성", thumbnailUrl: "https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=600&auto=format&fit=crop", plays: 45000, createdAt: "2024.08.22" },
+  { id: "d6", title: "100억으로 나만의 축구 구단 꾸리기", thumbnailUrl: "https://images.unsplash.com/photo-1518605368461-1e1e1fd51ed4?q=80&w=600&auto=format&fit=crop", plays: 310000, createdAt: "2024.07.10" },
+  { id: "d7", title: "5만원으로 크리스마스 파티 준비", thumbnailUrl: "https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=600&auto=format&fit=crop", plays: 76000, createdAt: "2024.06.01" },
+  { id: "d8", title: "0원으로 주말 풀코스 보내기", thumbnailUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop", plays: 123000, createdAt: "2024.05.15" },
+  { id: "d9", title: "200만원으로 자취방 인테리어 끝장내기", thumbnailUrl: "https://images.unsplash.com/photo-1556020685-e631950d4d33?q=80&w=600&auto=format&fit=crop", plays: 54000, createdAt: "2024.04.11" },
+  { id: "d10", title: "1만원으로 추억의 문방구 털기", thumbnailUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop", plays: 88000, createdAt: "2024.03.01" },
+];
+
 export default function Home() {
   return (
     <div className="flex flex-col gap-6 pb-6 pt-2">
@@ -64,6 +78,16 @@ export default function Home() {
         description="이 물건의 진짜 가격은 얼마일까? 감각을 시험해보세요"
         href="/price-guess" 
         items={MOCK_PRICE_GUESS} 
+      />
+
+      <div className="h-px bg-border"></div>
+
+      <GameRowSection 
+        emoji="🍉"
+        title="한정예산 드래프트" 
+        description="정해진 예산 안에서 최고의 라인업을 완성하세요"
+        href="/draft" 
+        items={MOCK_DRAFT} 
       />
 
       <div className="h-px bg-border"></div>
