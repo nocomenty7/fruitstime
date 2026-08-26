@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Search, Menu, UserCircle } from "lucide-react";
+import { Search, UserCircle } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { createClient } from "@/lib/supabase/server";
+import { MobileNav } from "./MobileNav";
 
 export async function Header() {
   const supabase = await createClient();
@@ -11,17 +12,15 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-16 items-center px-4 md:px-6">
-        <div className="flex items-center gap-4">
-          <button className="sm:hidden text-foreground">
-            <Menu className="h-6 w-6" />
-          </button>
-          <Link href="/" className="flex items-center">
+        <div className="flex items-center gap-2">
+          <MobileNav />
+          <Link href="/" className="flex items-center ml-2 sm:ml-4">
             <Image 
               src="/logo.png" 
               alt="Fruits Time Logo" 
-              width={140} 
-              height={40} 
-              className="object-contain h-10 w-auto" 
+              width={160} 
+              height={46} 
+              className="object-contain h-11 w-auto" 
               priority 
             />
           </Link>

@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { Footer } from "@/components/layout/Footer";
 
 export default function MainLayout({
   children,
@@ -11,10 +12,11 @@ export default function MainLayout({
       <Header />
       <div className="flex flex-1">
         <Sidebar />
-        <main className="flex-1 sm:pl-64">
-          <div className="h-full w-full max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
+        <main className="flex-1 flex flex-col sm:pl-64">
+          <div className="flex-1 w-full max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
             {children}
           </div>
+          <Footer />
         </main>
       </div>
     </div>
