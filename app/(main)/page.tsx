@@ -42,7 +42,7 @@ export default function Home() {
         items={MOCK_KNOW_OR_NOT} 
       />
 
-      <div className="h-px bg-border my-2"></div>
+      <div className="h-px bg-border"></div>
 
       <GameRowSection 
         emoji="🍊"

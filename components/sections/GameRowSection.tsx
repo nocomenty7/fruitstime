@@ -23,7 +23,7 @@ export function GameRowSection({ emoji, title, description, href, items }: GameR
   const displayItems = items.slice(0, 10);
 
   return (
-    <section className="mb-10 w-full">
+    <section className="w-full">
       <div className="mb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div className="flex items-end gap-3">
           <div className="flex items-center gap-2">
