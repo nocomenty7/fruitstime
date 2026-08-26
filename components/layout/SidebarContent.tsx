@@ -92,6 +92,13 @@ export function SidebarContent({ onClickItem }: { onClickItem?: () => void }) {
             </a>
           </li>
         ))}
+        {/* 지속 개발 중 안내 (클릭 방지) */}
+        <li>
+          <div className="flex items-center gap-3 px-3 py-2 rounded-lg opacity-60 cursor-not-allowed">
+            <span className="text-xl leading-none">🍑</span>
+            <span className="font-bold text-sm text-muted-foreground">새로운 게임 준비중...</span>
+          </div>
+        </li>
       </ul>
       
       <div className="my-8 border-t border-border"></div>
