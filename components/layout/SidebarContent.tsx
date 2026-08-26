@@ -30,7 +30,7 @@ const USER_ITEMS = [
 
 export function SidebarContent({ onClickItem }: { onClickItem?: () => void }) {
   return (
-    <div className="flex-1 overflow-y-auto py-4 px-3 custom-scrollbar">
+    <div className="flex-1 overflow-y-auto pt-6 pb-4 px-3 custom-scrollbar">
       <div className="mb-2 px-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
         게임 목록
       </div>

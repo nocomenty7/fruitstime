@@ -5,7 +5,7 @@ import { useState } from "react"
 // 현재는 1개만 올려두셨으므로 배열에 1개만 적용해 두었습니다.
 // 추후 이미지가 추가되면 이 배열에 객체를 추가하기만 하면 자동으로 회색 동그라미(인디케이터)가 늘어나고 슬라이드가 적용됩니다.
 const BANNERS = [
-  { id: 1, src: "/banner_260826.jpeg", alt: "메인 배너 1" }
+  { id: 1, src: "/banner_260826.png", alt: "메인 배너 1" }
 ]
 
 export function BannerCarousel() {
