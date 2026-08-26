@@ -18,7 +18,7 @@ const MOCK_PRICE_GUESS: MockGameItem[] = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-8 pb-10 pt-4">
+    <div className="flex flex-col gap-5 pb-6 pt-2">
       <BannerCarousel />
 
       <GameRowSection 

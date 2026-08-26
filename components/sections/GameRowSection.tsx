@@ -19,8 +19,8 @@ interface GameRowSectionProps {
 
 export function GameRowSection({ title, href, items, showAd = true }: GameRowSectionProps) {
   return (
-    <section className="mb-10 w-full">
-      <div className="mb-4 flex items-center justify-between">
+    <section className="mb-6 w-full">
+      <div className="mb-3 flex items-center justify-between">
         <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
           {title}
         </h2>

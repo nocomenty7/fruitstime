@@ -13,7 +13,7 @@ export default function MainLayout({
       <div className="flex flex-1">
         <Sidebar />
         <main className="flex-1 flex flex-col sm:pl-64">
-          <div className="flex-1 w-full max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
+          <div className="flex-1 w-full max-w-7xl mx-auto p-3 md:p-4 lg:p-5">
             {children}
           </div>
           <Footer />
