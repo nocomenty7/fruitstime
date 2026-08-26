@@ -1,5 +1,4 @@
 import { GameRowSection, MockGameItem } from "@/components/sections/GameRowSection";
-import { GiroSection } from "@/components/sections/GiroSection";
 
 // 임시 모의 데이터
 const MOCK_KNOW_OR_NOT: MockGameItem[] = [
@@ -37,8 +36,6 @@ export default function Home() {
         items={MOCK_KNOW_OR_NOT} 
         showAd={false}
       />
-
-      <GiroSection />
 
       <GameRowSection 
         title="가격 맞추기 - 인기순" 

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Home, Gamepad2, Coins, CircleDollarSign, Compass, PlusSquare, UserCircle } from "lucide-react";
 
 const NAV_ITEMS = [
-  { href: "/", label: "홈", icon: Home },
   { href: "/know-or-not", label: "안다 vs 모른다", icon: Gamepad2 },
   { href: "/price-guess", label: "가격 맞추기", icon: Coins },
   { href: "/budget-draft", label: "한정예산 드래프트", icon: CircleDollarSign },

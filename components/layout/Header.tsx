@@ -11,9 +11,15 @@ export function Header() {
           <button className="sm:hidden text-foreground">
             <Menu className="h-6 w-6" />
           </button>
-          <Link href="/" className="flex items-center gap-2">
-            <Image src="/logo.png" alt="Fruits Time Logo" width={32} height={32} className="object-contain" priority />
-            <span className="text-xl font-bold tracking-tight text-primary hidden sm:inline-block">Fruits Time</span>
+          <Link href="/" className="flex items-center">
+            <Image 
+              src="/logo.png" 
+              alt="Fruits Time Logo" 
+              width={140} 
+              height={40} 
+              className="object-contain h-10 w-auto" 
+              priority 
+            />
           </Link>
         </div>
 
