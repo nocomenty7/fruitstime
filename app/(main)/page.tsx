@@ -1,4 +1,5 @@
 import { GameRowSection, MockGameItem } from "@/components/sections/GameRowSection";
+import { BannerCarousel } from "@/components/sections/BannerCarousel";
 
 // 임시 모의 데이터
 const MOCK_KNOW_OR_NOT: MockGameItem[] = [
@@ -18,10 +19,7 @@ const MOCK_PRICE_GUESS: MockGameItem[] = [
 export default function Home() {
   return (
     <div className="flex flex-col gap-8 pb-10 pt-4">
-      <div className="mb-2">
-        <h1 className="text-3xl font-bold tracking-tight">스트리머를 위한 종합 콘텐츠</h1>
-        <p className="text-muted-foreground mt-2">방송에 바로 사용할 수 있는 시참 게임들을 만나보세요.</p>
-      </div>
+      <BannerCarousel />
 
       <GameRowSection 
         title="안다 vs 모른다 - 인기순" 
