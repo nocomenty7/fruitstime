@@ -47,7 +47,7 @@ export async function Header() {
               <span className="hidden sm:inline-block">내 정보</span>
             </Link>
           ) : (
-            <Link href="/login" className="h-9 px-4 ml-2 inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground font-medium text-sm hover:bg-primary/90 transition-colors">
+            <Link href="/login" className="h-9 px-4 ml-2 inline-flex items-center justify-center rounded-full bg-orange-500 text-white font-medium text-sm hover:bg-orange-600 transition-colors shadow-sm">
               로그인
             </Link>
           )}

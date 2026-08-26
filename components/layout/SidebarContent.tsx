@@ -14,12 +14,15 @@ const FRUIT_GAMES = [
     label: "가격 맞추기",
     emoji: "🍊",
     href: "/price-guess"
-  },
+  }
+];
+
+const EXTERNAL_GAMES = [
   {
-    id: "worldcup",
-    label: "이상형 월드컵",
+    id: "kiro",
+    label: "밸런스게임 '기로'",
     emoji: "🍇",
-    href: "/worldcup"
+    href: "https://playkiro.kr"
   }
 ];
 
@@ -64,6 +67,23 @@ export function SidebarContent({ onClickItem }: { onClickItem?: () => void }) {
                 </Link>
               </li>
             </ul>
+          </li>
+        ))}
+      </ul>
+
+      {/* 외부 링크 게임 목록 */}
+      <ul className="space-y-6 mt-6">
+        {EXTERNAL_GAMES.map((game) => (
+          <li key={game.id}>
+            <a 
+              href={game.href} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition-colors group"
+            >
+              <span className="text-xl leading-none group-hover:scale-110 transition-transform">{game.emoji}</span>
+              <span className="font-bold text-sm text-foreground">{game.label}</span>
+            </a>
           </li>
         ))}
       </ul>

@@ -29,6 +29,20 @@ const MOCK_PRICE_GUESS: MockGameItem[] = [
   { id: "p10", title: "아이돌 굿즈 중 가장 비싼 것은?", thumbnailUrl: "https://images.unsplash.com/photo-1621360841013-c76831f1628f?q=80&w=600&auto=format&fit=crop", plays: 92000, createdAt: "2024.03.01" },
 ];
 
+// 임시 모의 데이터 (밸런스게임 '기로' - 10개)
+const MOCK_KIRO: MockGameItem[] = [
+  { id: "k1", title: "평생 치킨 안먹기 vs 평생 피자 안먹기", thumbnailUrl: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=600&auto=format&fit=crop", plays: 450000, createdAt: "2024.12.05" },
+  { id: "k2", title: "100억 받고 스마트폰 없이 살기 vs 그냥 살기", thumbnailUrl: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=600&auto=format&fit=crop", plays: 890000, createdAt: "2024.11.22" },
+  { id: "k3", title: "다시 태어나면 재벌집 막내딸 vs 천재 뮤지션", thumbnailUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600&auto=format&fit=crop", plays: 230000, createdAt: "2024.10.15" },
+  { id: "k4", title: "여름에 패딩 입기 vs 겨울에 반팔 입기", thumbnailUrl: "https://images.unsplash.com/photo-1551524164-687a55dd1126?q=80&w=600&auto=format&fit=crop", plays: 54000, createdAt: "2024.09.08" },
+  { id: "k5", title: "평생 라면만 먹기 vs 평생 삼겹살만 먹기", thumbnailUrl: "https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=600&auto=format&fit=crop", plays: 120000, createdAt: "2024.08.30" },
+  { id: "k6", title: "혼자서 무인도에 1년 살기 vs 보기 싫은 사람과 평생 살기", thumbnailUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop", plays: 78000, createdAt: "2024.07.12" },
+  { id: "k7", title: "평생 양치 안하기 vs 평생 샤워 안하기", thumbnailUrl: "https://images.unsplash.com/photo-1550506161-125026e6de31?q=80&w=600&auto=format&fit=crop", plays: 240000, createdAt: "2024.06.25" },
+  { id: "k8", title: "내가 사랑하는 사람 vs 나를 사랑하는 사람", thumbnailUrl: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600&auto=format&fit=crop", plays: 560000, createdAt: "2024.05.10" },
+  { id: "k9", title: "매일 야근하고 1천만원 vs 칼퇴하고 300만원", thumbnailUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=600&auto=format&fit=crop", plays: 890000, createdAt: "2024.04.05" },
+  { id: "k10", title: "과거로 돌아가기 vs 미래로 가기", thumbnailUrl: "https://images.unsplash.com/photo-1447015237013-0e80b2786dea?q=80&w=600&auto=format&fit=crop", plays: 340000, createdAt: "2024.03.11" },
+];
+
 export default function Home() {
   return (
     <div className="flex flex-col gap-6 pb-6 pt-2">
@@ -50,6 +64,16 @@ export default function Home() {
         description="이 물건의 진짜 가격은 얼마일까? 감각을 시험해보세요"
         href="/price-guess" 
         items={MOCK_PRICE_GUESS} 
+      />
+
+      <div className="h-px bg-border"></div>
+
+      <GameRowSection 
+        emoji="🍇"
+        title="밸런스게임 '기로'" 
+        description="두 가지 선택지 중 당신의 선택은? 극강의 밸런스 게임"
+        href="/kiro" 
+        items={MOCK_KIRO} 
       />
     </div>
   );
