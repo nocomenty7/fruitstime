@@ -1,49 +1,68 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { ContentCard } from "@/components/cards/ContentCard";
-import { AdSenseCard } from "@/components/cards/AdSenseCard";
 
-// 임시 목업 데이터 타입
 export interface MockGameItem {
   id: string;
   title: string;
   thumbnailUrl: string;
+  plays: number;
+  likes: number;
 }
 
 interface GameRowSectionProps {
+  emoji: string;
   title: string;
+  description: string;
   href: string;
   items: MockGameItem[];
-  showAd?: boolean;
 }
 
-export function GameRowSection({ title, href, items, showAd = true }: GameRowSectionProps) {
+export function GameRowSection({ emoji, title, description, href, items }: GameRowSectionProps) {
+  // 데스크톱에서는 2줄(10개), 모바일 등에서는 줄여서 보여줌
+  const displayItems = items.slice(0, 10);
+
   return (
-    <section className="mb-6 w-full">
-      <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-          {title}
-        </h2>
+    <section className="mb-10 w-full">
+      <div className="mb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div className="flex items-end gap-3">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl sm:text-3xl leading-none">{emoji}</span>
+            <h2 className="text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
+              {title}
+            </h2>
+          </div>
+          <p className="hidden sm:inline-block text-sm font-medium text-muted-foreground pb-0.5">
+            {description}
+          </p>
+        </div>
         <Link 
-          href={href} 
-          className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+          href={`${href}/popular`} 
+          className="inline-flex items-center text-sm font-semibold text-muted-foreground hover:text-primary transition-colors"
         >
           더보기
-          <ChevronRight className="ml-1 h-4 w-4" />
+          <ChevronRight className="ml-0.5 h-4 w-4" />
         </Link>
       </div>
+      
+      {/* 모바일에서만 보이는 설명 텍스트 */}
+      <p className="sm:hidden text-sm font-medium text-muted-foreground mb-4 pl-1">
+        {description}
+      </p>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5">
-        {items.slice(0, showAd ? 4 : 5).map((item) => (
+      {/* 2줄 나열 그리드 */}
+      <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5">
+        {displayItems.map((item) => (
           <ContentCard
             key={item.id}
             id={item.id}
             title={item.title}
             thumbnailUrl={item.thumbnailUrl}
             href={`${href}/play/${item.id}`}
+            plays={item.plays}
+            likes={item.likes}
           />
         ))}
-        {showAd && <AdSenseCard />}
       </div>
     </section>
   );

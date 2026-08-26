@@ -12,7 +12,7 @@ export function BannerCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl border border-border/50 shadow-sm mb-4 aspect-[21/9] md:aspect-[4/1] bg-muted/30">
+    <div className="relative w-full overflow-hidden rounded-2xl border border-border/50 shadow-sm mb-4 aspect-[4/1] md:aspect-[5/1] xl:aspect-[6/1] bg-muted/30">
       {/* 배너 이미지 래퍼 */}
       <div 
         className="flex h-full w-full transition-transform duration-500 ease-in-out"
