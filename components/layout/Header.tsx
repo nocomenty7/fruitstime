@@ -1,9 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Search, Menu } from "lucide-react";
+import { Search, Menu, UserCircle } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { createClient } from "@/lib/supabase/server";
 
-export function Header() {
+export async function Header() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-16 items-center px-4 md:px-6">
@@ -38,9 +42,16 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <button className="h-9 px-4 ml-2 inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground font-medium text-sm hover:bg-primary/90 transition-colors">
-            로그인
-          </button>
+          {user ? (
+            <Link href="/mypage" className="ml-2 flex h-9 items-center gap-2 rounded-full border border-border px-3 text-sm font-medium hover:bg-muted transition-colors">
+              <UserCircle className="h-5 w-5" />
+              <span className="hidden sm:inline-block">내 정보</span>
+            </Link>
+          ) : (
+            <Link href="/login" className="h-9 px-4 ml-2 inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground font-medium text-sm hover:bg-primary/90 transition-colors">
+              로그인
+            </Link>
+          )}
         </div>
       </div>
     </header>
