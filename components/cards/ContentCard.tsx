@@ -8,10 +8,10 @@ interface ContentCardProps {
   thumbnailUrl: string;
   href: string;
   plays?: number;
-  likes?: number;
+  createdAt?: string;
 }
 
-export function ContentCard({ id, title, thumbnailUrl, href, plays = 0, likes = 0 }: ContentCardProps) {
+export function ContentCard({ id, title, thumbnailUrl, href, plays = 0, createdAt = "2024.01.01" }: ContentCardProps) {
   // 숫자를 K, M 등 축약형이나 천단위 콤마로 표기
   const formatNumber = (num: number) => {
     if (num >= 10000) {
@@ -39,9 +39,9 @@ export function ContentCard({ id, title, thumbnailUrl, href, plays = 0, likes = 
           {title}
         </h3>
         <div className="flex items-center text-xs font-medium text-muted-foreground mt-0.5">
-          <span>조회수 {formatNumber(plays)}회</span>
+          <span>플레이 {formatNumber(plays)}회</span>
           <span className="mx-1.5">•</span>
-          <span>좋아요 {formatNumber(likes)}</span>
+          <span>{createdAt}</span>
         </div>
       </div>
     </Link>

@@ -7,7 +7,7 @@ export interface MockGameItem {
   title: string;
   thumbnailUrl: string;
   plays: number;
-  likes: number;
+  createdAt: string;
 }
 
 interface GameRowSectionProps {
@@ -60,7 +60,7 @@ export function GameRowSection({ emoji, title, description, href, items }: GameR
             thumbnailUrl={item.thumbnailUrl}
             href={`${href}/play/${item.id}`}
             plays={item.plays}
-            likes={item.likes}
+            createdAt={item.createdAt}
           />
         ))}
       </div>
