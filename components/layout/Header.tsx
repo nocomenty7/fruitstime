@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Search, Menu } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -11,7 +12,8 @@ export function Header() {
             <Menu className="h-6 w-6" />
           </button>
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight text-primary">Fruits Time</span>
+            <Image src="/logo.png" alt="Fruits Time Logo" width={32} height={32} className="object-contain" priority />
+            <span className="text-xl font-bold tracking-tight text-primary hidden sm:inline-block">Fruits Time</span>
           </Link>
         </div>
 
