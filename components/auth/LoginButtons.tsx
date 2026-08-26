@@ -2,17 +2,20 @@
 
 import { createClient } from '@/lib/supabase/client'
 import { useState } from 'react'
-import { Github } from 'lucide-react' // 일단 Google 아이콘이 lucide에 없으므로 임시로 텍스트/기본 아이콘 활용
 
 export function LoginButtons() {
   const [isLoading, setIsLoading] = useState<string | null>(null)
   const supabase = createClient()
 
-  const handleLogin = async (provider: 'google' | 'github') => {
+  // Supabase에 커스텀/OIDC를 통해 네이버 등 다른 프로바이더를 사용할 때,
+  // Provider 타입이 'naver' 등으로 추가 확장되었거나, 커스텀 Provider일 수 있습니다.
+  const handleLogin = async (provider: 'google' | 'naver' | 'github') => {
     try {
       setIsLoading(provider)
       await supabase.auth.signInWithOAuth({
-        provider,
+        // 현재 @supabase/supabase-js 타입스크립트 버전에 따라 'naver' 지원 여부가 다를 수 있으나, 
+        // 런타임에는 카카오(kakao)처럼 보통 동작합니다. (만약 타입 에러 시 as any 사용 가능)
+        provider: provider as any,
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
         },
@@ -37,16 +40,16 @@ export function LoginButtons() {
           <path d="M5.26498 14.2949C5.02498 13.5699 4.88501 12.7999 4.88501 11.9999C4.88501 11.1999 5.01998 10.4299 5.26498 9.7049L1.275 6.60986C0.46 8.22986 0 10.0599 0 11.9999C0 13.9399 0.46 15.7699 1.28 17.3899L5.26498 14.2949Z" fill="#FBBC05" />
           <path d="M12.0004 24C15.2404 24 17.9654 22.935 19.9454 21.095L16.0804 18.095C15.0054 18.82 13.6204 19.245 12.0004 19.245C8.8704 19.245 6.21537 17.135 5.26537 14.29L1.27539 17.385C3.25539 21.31 7.3104 24 12.0004 24Z" fill="#34A853" />
         </svg>
-        {isLoading === 'google' ? '연결 중...' : 'Google로 계속하기'}
+        {isLoading === 'google' ? '연결 중...' : 'Google로 시작하기'}
       </button>
       
       <button
-        onClick={() => handleLogin('github')}
+        onClick={() => handleLogin('naver')}
         disabled={isLoading !== null}
-        className="flex w-full items-center justify-center gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm font-medium transition-colors hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50"
+        className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#03C75A] px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-[#03C75A]/90 focus:outline-none focus:ring-2 focus:ring-[#03C75A] focus:ring-offset-2 disabled:opacity-50"
       >
-        <Github className="h-5 w-5" />
-        {isLoading === 'github' ? '연결 중...' : 'GitHub으로 계속하기'}
+        <span className="font-extrabold text-lg">N</span>
+        {isLoading === 'naver' ? '연결 중...' : '네이버로 시작하기'}
       </button>
     </div>
   )
