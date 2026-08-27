@@ -12,7 +12,9 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-16 items-center px-4 md:px-6">
-        <div className="flex items-center gap-2">
+        
+        {/* Left Area */}
+        <div className="flex flex-1 items-center gap-2 justify-start">
           <MobileNav />
           <Link href="/" className="flex items-center ml-2 sm:ml-4">
             <Image 
@@ -26,7 +28,8 @@ export async function Header() {
           </Link>
         </div>
 
-        <div className="flex flex-1 items-center justify-center px-6">
+        {/* Center Area (Search) */}
+        <div className="flex-[2] flex items-center justify-center px-2 sm:px-6">
           <div className="w-full max-w-lg relative hidden sm:flex items-center">
             <input 
               type="search" 
@@ -39,23 +42,20 @@ export async function Header() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        {/* Right Area (Buttons) */}
+        <div className="flex flex-1 items-center gap-2 justify-end">
           <ThemeToggle />
           {user ? (
-            <div className="flex items-center gap-2 ml-2">
-              <Link href="/mypage" className="flex h-9 items-center justify-center rounded-full border border-border px-4 text-sm font-medium hover:bg-muted transition-colors shadow-sm">
-                마이페이지
-              </Link>
-              <button className="flex h-9 items-center justify-center rounded-full bg-secondary text-secondary-foreground px-4 text-sm font-medium hover:bg-secondary/80 transition-colors shadow-sm">
-                로그아웃
-              </button>
-            </div>
+            <Link href="/mypage" className="h-9 px-4 ml-2 inline-flex items-center justify-center rounded-full bg-orange-500 text-white font-medium text-sm hover:bg-orange-600 transition-colors shadow-sm cursor-pointer">
+              내정보
+            </Link>
           ) : (
-            <Link href="/login" className="h-9 px-4 ml-2 inline-flex items-center justify-center rounded-full bg-orange-500 text-white font-medium text-sm hover:bg-orange-600 transition-colors shadow-sm">
+            <Link href="/login" className="h-9 px-4 ml-2 inline-flex items-center justify-center rounded-full bg-orange-500 text-white font-medium text-sm hover:bg-orange-600 transition-colors shadow-sm cursor-pointer">
               로그인
             </Link>
           )}
         </div>
+
       </div>
     </header>
   );
