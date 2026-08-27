@@ -5,30 +5,34 @@ import { PlusSquare, UserCircle, Search, Trophy, Clock } from "lucide-react";
 const FRUIT_GAMES = [
   {
     id: "know-or-not",
-    label: "안다 vs 모른다",
+    label: "이거 알아?",
     emoji: "🍓",
-    href: "/know-or-not"
+    href: "/know-or-not",
+    badge: { text: "NEW", color: "bg-yellow-400" }
   },
   {
     id: "price-guess",
-    label: "가격 맞추기",
+    label: "가격 스캐너",
     emoji: "🍊",
-    href: "/price-guess"
+    href: "/price-guess",
+    badge: { text: "NEW", color: "bg-yellow-400" }
   },
   {
     id: "draft",
-    label: "한정예산 드래프트",
+    label: "입맛대로 스쿼드",
     emoji: "🍉",
-    href: "/draft"
+    href: "/draft",
+    badge: { text: "NEW", color: "bg-yellow-400" }
   }
 ];
 
 const EXTERNAL_GAMES = [
   {
     id: "kiro",
-    label: "밸런스게임 '기로'",
+    label: "시참 밸런스게임 '기로'",
     emoji: "🍇",
-    href: "https://playkiro.kr"
+    href: "https://playkiro.kr",
+    badge: { text: "HOT", color: "bg-red-500" }
   }
 ];
 
@@ -88,7 +92,14 @@ export function SidebarContent({ onClickItem }: { onClickItem?: () => void }) {
               className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition-colors group"
             >
               <span className="text-xl leading-none group-hover:scale-110 transition-transform">{game.emoji}</span>
-              <span className="font-bold text-sm text-foreground">{game.label}</span>
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-sm text-foreground">{game.label}</span>
+                {game.badge && (
+                  <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded-sm text-white ${game.badge.color}`}>
+                    {game.badge.text}
+                  </span>
+                )}
+              </div>
             </a>
           </li>
         ))}

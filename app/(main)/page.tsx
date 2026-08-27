@@ -64,7 +64,7 @@ export default function Home() {
 
       <GameRowSection 
         emoji="🍓"
-        title="안다 vs 모른다" 
+        title="이거 알아?" 
         description="다양한 주제에 대한 내 지식을 테스트해보는 게임"
         href="/know-or-not" 
         items={MOCK_KNOW_OR_NOT} 
@@ -74,7 +74,7 @@ export default function Home() {
 
       <GameRowSection 
         emoji="🍊"
-        title="가격 맞추기" 
+        title="가격 스캐너" 
         description="이 물건의 진짜 가격은 얼마일까? 감각을 시험해보세요"
         href="/price-guess" 
         items={MOCK_PRICE_GUESS} 
@@ -84,7 +84,7 @@ export default function Home() {
 
       <GameRowSection 
         emoji="🍉"
-        title="한정예산 드래프트" 
+        title="입맛대로 스쿼드" 
         description="정해진 예산 안에서 최고의 라인업을 완성하세요"
         href="/draft" 
         items={MOCK_DRAFT} 
@@ -94,7 +94,7 @@ export default function Home() {
 
       <GameRowSection 
         emoji="🍇"
-        title="밸런스게임 '기로'" 
+        title="시참 밸런스게임 '기로'" 
         description="두 가지 선택지 중 당신의 선택은? 극강의 밸런스 게임"
         href="/kiro" 
         items={MOCK_KIRO} 
