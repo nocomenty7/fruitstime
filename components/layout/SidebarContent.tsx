@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { Search, Trophy, Clock, Info, Bell } from "lucide-react";
+import { Search, Trophy, Clock, Info, Bell, PlusSquare } from "lucide-react";
 
 const FRUIT_GAMES = [
   {
@@ -33,10 +33,6 @@ const EXTERNAL_GAMES = [
   }
 ];
 
-const USER_ITEMS = [
-  { href: "/create", label: "만들기", icon: PlusSquare },
-  { href: "/mypage", label: "마이페이지", icon: UserCircle },
-];
 
 export function SidebarContent({ onClickItem }: { onClickItem?: () => void }) {
   return (
@@ -51,11 +47,6 @@ export function SidebarContent({ onClickItem }: { onClickItem?: () => void }) {
               <span className="text-xl leading-none">{game.emoji}</span>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-sm text-foreground">{game.label}</span>
-                {game.badge && (
-                  <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded-sm text-white ${game.badge.color}`}>
-                    {game.badge.text}
-                  </span>
-                )}
               </div>
             </div>
             
