@@ -39,7 +39,10 @@ export function ContentCard({ id, title, thumbnailUrl, href, plays = 0, createdA
           {title}
         </h3>
         <div className="flex items-center text-xs font-medium text-muted-foreground mt-0.5">
-          <span>플레이 {formatNumber(plays)}회</span>
+          <span className="flex items-center gap-1">
+            <Play className="h-3 w-3 fill-current" />
+            {formatNumber(plays)}회
+          </span>
           <span className="mx-1.5">•</span>
           <span>{createdAt}</span>
         </div>
