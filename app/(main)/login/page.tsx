@@ -15,13 +15,13 @@ export default async function LoginPage() {
     <div className="flex flex-1 flex-col items-center justify-center min-h-[calc(100vh-13rem)] bg-background px-4 py-12">
       <div className="relative w-full max-w-[480px] space-y-8 rounded-2xl border border-border bg-card px-8 pb-10 pt-16 shadow-lg mt-16">
         
-        {/* 마스코트 이미지 */}
-        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full overflow-hidden border-[6px] border-background bg-background shadow-md z-10 transition-transform hover:scale-105">
+        {/* 배너 이미지 크롭 영역 (딸기와 오렌지 또는 복숭아 2명) */}
+        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-48 h-24 rounded-2xl overflow-hidden border-[6px] border-background bg-background shadow-md z-10 transition-transform hover:scale-105">
           <Image 
-            src="/mascot.jpg" 
-            alt="Fruits Time Mascot" 
+            src="/banner_260826.png" 
+            alt="Fruits Time Characters" 
             fill 
-            className="object-cover"
+            className="object-cover object-[40%_center]"
             priority
           />
         </div>
