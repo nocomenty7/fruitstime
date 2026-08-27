@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { createPortal } from "react-dom"
 import { Menu, X } from "lucide-react"
 import { SidebarContent } from "./SidebarContent"
 import Image from "next/image"
@@ -8,6 +9,11 @@ import Link from "next/link"
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <div className="sm:hidden">
@@ -18,15 +24,15 @@ export function MobileNav() {
         <Menu className="h-6 w-6" />
       </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex">
+      {mounted && isOpen && createPortal(
+        <div className="fixed inset-0 z-[100] flex">
           {/* 오버레이 */}
           <div 
             className="fixed inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
           {/* 사이드바 모달 */}
-          <div className="relative z-50 w-72 bg-background h-full shadow-xl flex flex-col animate-in slide-in-from-left-full duration-200">
+          <div className="relative z-[101] w-72 bg-background h-full shadow-xl flex flex-col animate-in slide-in-from-left-full duration-200">
             <div className="flex h-16 items-center justify-between px-4 border-b border-border">
               <Link href="/" onClick={() => setIsOpen(false)}>
                 <Image 
@@ -47,7 +53,8 @@ export function MobileNav() {
             
             <SidebarContent onClickItem={() => setIsOpen(false)} />
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )
