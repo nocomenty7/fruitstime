@@ -34,7 +34,7 @@ export default async function MyPage() {
             </div>
             <div>
               <h2 className="text-lg font-semibold line-clamp-1">{displayNickname}</h2>
-              <p className="text-sm text-muted-foreground">안전한 소셜 계정</p>
+              <p className="text-sm text-muted-foreground">소셜 계정 연동중</p>
             </div>
           </div>
           
