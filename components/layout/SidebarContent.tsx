@@ -52,7 +52,14 @@ export function SidebarContent({ onClickItem }: { onClickItem?: () => void }) {
           <li key={game.id} className="flex flex-col gap-2">
             <div className="flex items-center gap-3 px-3">
               <span className="text-xl leading-none">{game.emoji}</span>
-              <span className="font-bold text-sm text-foreground">{game.label}</span>
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-sm text-foreground">{game.label}</span>
+                {game.badge && (
+                  <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded-sm text-white ${game.badge.color}`}>
+                    {game.badge.text}
+                  </span>
+                )}
+              </div>
             </div>
             
             <ul className="ml-5 border-l-2 border-border/40 pl-3 space-y-1">
