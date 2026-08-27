@@ -16,7 +16,6 @@ export function LoginButtons() {
         provider: provider as any,
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
-          scopes: provider === 'kakao' ? 'profile_nickname profile_image' : undefined,
         },
       })
     } catch (error) {
