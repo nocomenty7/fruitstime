@@ -3,7 +3,7 @@ import { BannerCarousel } from "@/components/sections/BannerCarousel";
 
 // 임시 모의 데이터 (안다 vs 모른다 - 10개)
 const MOCK_KNOW_OR_NOT: MockGameItem[] = [
-  { id: "k1", title: "2024년 신조어, 당신은 얼마나 알고 있나요?", thumbnailUrl: "https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=600&auto=format&fit=crop", plays: 34500, createdAt: "2024.12.01" },
+  { id: "11111111-1111-1111-1111-111111111111", title: "원영적 사고(럭키비키), 이 밈을 알고 계신가요?", thumbnailUrl: "https://images.unsplash.com/photo-1621360841013-c76831f1628f?q=80&w=600&auto=format&fit=crop", plays: 1254, createdAt: "2024.12.01" },
   { id: "k2", title: "이 브랜드 로고, 진짜일까 가짜일까?", thumbnailUrl: "https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?q=80&w=600&auto=format&fit=crop", plays: 12500, createdAt: "2024.11.28" },
   { id: "k3", title: "90년대생만 아는 애니메이션 오프닝", thumbnailUrl: "https://images.unsplash.com/photo-1535016120720-40c746a6580c?q=80&w=600&auto=format&fit=crop", plays: 98000, createdAt: "2024.11.15" },
   { id: "k4", title: "이 영화 명대사, 어떤 영화일까?", thumbnailUrl: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=600&auto=format&fit=crop", plays: 4500, createdAt: "2024.11.10" },
