@@ -11,12 +11,12 @@ export default async function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex flex-1 flex-col items-center justify-center min-h-[calc(100vh-13rem)] bg-background px-4">
       <div className="w-full max-w-md space-y-8 rounded-2xl border border-border bg-card p-8 shadow-sm">
         <div className="text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-card-foreground">환영합니다!</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-card-foreground">후르츠타임에 오신걸 환영합니다!</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            소셜 계정으로 빠르게 로그인하고 모든 콘텐츠를 즐겨보세요.
+            소셜 계정으로 빠르게 회원가입, 로그인하고 모든 콘텐츠를 즐겨보세요.
           </p>
         </div>
         <LoginButtons />
