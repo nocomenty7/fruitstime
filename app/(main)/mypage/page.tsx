@@ -11,6 +11,14 @@ export default async function MyPage() {
     redirect('/login')
   }
 
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('nickname')
+    .eq('id', user.id)
+    .single()
+
+  const displayNickname = profile?.nickname || '후르츠타임 회원'
+
   return (
     <div className="flex flex-col gap-8 pb-10 pt-4">
       <div className="mb-2">
@@ -25,8 +33,8 @@ export default async function MyPage() {
               <UserCircle className="h-10 w-10 text-primary" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold line-clamp-1">{user.email || '소셜 계정 유저'}</h2>
-              <p className="text-sm text-muted-foreground">ID: {user.id.substring(0, 8)}...</p>
+              <h2 className="text-lg font-semibold line-clamp-1">{displayNickname}</h2>
+              <p className="text-sm text-muted-foreground">안전한 소셜 계정</p>
             </div>
           </div>
           
