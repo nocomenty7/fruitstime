@@ -42,10 +42,14 @@ export async function Header() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           {user ? (
-            <Link href="/mypage" className="ml-2 flex h-9 items-center gap-2 rounded-full border border-border px-3 text-sm font-medium hover:bg-muted transition-colors">
-              <UserCircle className="h-5 w-5" />
-              <span className="hidden sm:inline-block">내 정보</span>
-            </Link>
+            <div className="flex items-center gap-2 ml-2">
+              <Link href="/mypage" className="flex h-9 items-center justify-center rounded-full border border-border px-4 text-sm font-medium hover:bg-muted transition-colors shadow-sm">
+                마이페이지
+              </Link>
+              <button className="flex h-9 items-center justify-center rounded-full bg-secondary text-secondary-foreground px-4 text-sm font-medium hover:bg-secondary/80 transition-colors shadow-sm">
+                로그아웃
+              </button>
+            </div>
           ) : (
             <Link href="/login" className="h-9 px-4 ml-2 inline-flex items-center justify-center rounded-full bg-orange-500 text-white font-medium text-sm hover:bg-orange-600 transition-colors shadow-sm">
               로그인

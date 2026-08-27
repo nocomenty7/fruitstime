@@ -122,21 +122,29 @@ export function SidebarContent({ onClickItem }: { onClickItem?: () => void }) {
       <div className="my-8 border-t border-border"></div>
       
       <div className="mb-2 px-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-        내 활동
+        후르츠타임
       </div>
       <ul className="space-y-1">
-        {USER_ITEMS.map((item) => (
-          <li key={item.href}>
-            <Link
-              onClick={onClickItem}
-              href={item.href}
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
-            >
-              <item.icon className="h-5 w-5" />
-              <span className="font-medium text-sm">{item.label}</span>
-            </Link>
-          </li>
-        ))}
+        <li>
+          <Link
+            onClick={onClickItem}
+            href="/about"
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+          >
+            <span className="text-lg leading-none">👋</span>
+            <span className="font-medium text-sm">소개</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={onClickItem}
+            href="/notices"
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+          >
+            <span className="text-lg leading-none">📢</span>
+            <span className="font-medium text-sm">공지사항</span>
+          </Link>
+        </li>
       </ul>
     </div>
   );
