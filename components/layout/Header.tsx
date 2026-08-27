@@ -11,26 +11,26 @@ export async function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-16 items-center px-4 md:px-6">
+      <div className="flex h-16 items-center justify-between px-3 md:px-6">
         
         {/* Left Area */}
-        <div className="flex flex-1 items-center gap-2 justify-start">
+        <div className="flex shrink-0 sm:flex-1 items-center gap-1 sm:gap-2 justify-start">
           <MobileNav />
-          <Link href="/" className="flex items-center ml-2 sm:ml-4">
+          <Link href="/" className="flex items-center shrink-0 ml-1 sm:ml-4">
             <Image 
               src="/logo.png" 
               alt="Fruits Time Logo" 
               width={160} 
               height={46} 
-              className="object-contain h-11 w-auto" 
+              className="object-contain h-8 sm:h-11 w-auto shrink-0" 
               priority 
             />
           </Link>
         </div>
 
         {/* Center Area (Search) */}
-        <div className="flex-[2] flex items-center justify-center px-2 sm:px-6">
-          <div className="w-full max-w-lg relative hidden sm:flex items-center">
+        <div className="hidden sm:flex sm:flex-[2] items-center justify-center px-2 sm:px-6">
+          <div className="w-full max-w-lg relative flex items-center">
             <input 
               type="search" 
               placeholder="콘텐츠 검색..." 
@@ -43,14 +43,14 @@ export async function Header() {
         </div>
 
         {/* Right Area (Buttons) */}
-        <div className="flex flex-1 items-center gap-2 justify-end">
+        <div className="flex shrink-0 sm:flex-1 items-center gap-1 sm:gap-2 justify-end ml-auto">
           <ThemeToggle />
           {user ? (
-            <Link href="/mypage" className="h-9 px-4 ml-2 inline-flex items-center justify-center rounded-full bg-orange-500 text-white font-medium text-sm hover:bg-orange-600 transition-colors shadow-sm cursor-pointer">
+            <Link href="/mypage" className="whitespace-nowrap shrink-0 h-8 sm:h-9 px-3 sm:px-4 inline-flex items-center justify-center rounded-full bg-orange-500 text-white font-medium text-xs sm:text-sm hover:bg-orange-600 transition-colors shadow-sm cursor-pointer">
               내정보
             </Link>
           ) : (
-            <Link href="/login" className="h-9 px-4 ml-2 inline-flex items-center justify-center rounded-full bg-orange-500 text-white font-medium text-sm hover:bg-orange-600 transition-colors shadow-sm cursor-pointer">
+            <Link href="/login" className="whitespace-nowrap shrink-0 h-8 sm:h-9 px-3 sm:px-4 inline-flex items-center justify-center rounded-full bg-orange-500 text-white font-medium text-xs sm:text-sm hover:bg-orange-600 transition-colors shadow-sm cursor-pointer">
               로그인
             </Link>
           )}
