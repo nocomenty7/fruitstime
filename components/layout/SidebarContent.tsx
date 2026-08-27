@@ -1,28 +1,25 @@
 "use client"
 import Link from "next/link";
-import { PlusSquare, UserCircle, Search, Trophy, Clock } from "lucide-react";
+import { Search, Trophy, Clock, Info, Bell } from "lucide-react";
 
 const FRUIT_GAMES = [
   {
     id: "know-or-not",
     label: "이거 알아?",
     emoji: "🍓",
-    href: "/know-or-not",
-    badge: { text: "NEW", color: "bg-yellow-400" }
+    href: "/know-or-not"
   },
   {
     id: "price-guess",
     label: "가격 스캐너",
     emoji: "🍊",
-    href: "/price-guess",
-    badge: { text: "NEW", color: "bg-yellow-400" }
+    href: "/price-guess"
   },
   {
     id: "draft",
     label: "입맛대로 스쿼드",
     emoji: "🍉",
-    href: "/draft",
-    badge: { text: "NEW", color: "bg-yellow-400" }
+    href: "/draft"
   }
 ];
 
@@ -131,7 +128,7 @@ export function SidebarContent({ onClickItem }: { onClickItem?: () => void }) {
             href="/about"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
           >
-            <span className="text-lg leading-none">👋</span>
+            <Info className="h-5 w-5" />
             <span className="font-medium text-sm">소개</span>
           </Link>
         </li>
@@ -141,7 +138,7 @@ export function SidebarContent({ onClickItem }: { onClickItem?: () => void }) {
             href="/notices"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
           >
-            <span className="text-lg leading-none">📢</span>
+            <Bell className="h-5 w-5" />
             <span className="font-medium text-sm">공지사항</span>
           </Link>
         </li>
