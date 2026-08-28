@@ -22,7 +22,7 @@ interface Props {
 export function TopicListWrapper({ topics }: Props) {
   const [selectedTopic, setSelectedTopic] = useState<ExtendedTopic | null>(null)
   
-  const displayItems = topics.slice(0, 10);
+  const displayItems = topics;
 
   return (
     <section className="w-full">

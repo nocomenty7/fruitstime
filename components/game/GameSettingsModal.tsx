@@ -12,23 +12,22 @@ interface GameSettingsModalProps {
 }
 
 const DECADES = [
-  { id: "80s", label: "80년대" },
-  { id: "90s", label: "90년대" },
-  { id: "00s", label: "00년대" },
-  { id: "10s", label: "10년대" },
+  { id: "80s", label: "1980년대생" },
+  { id: "90s", label: "1990년대생" },
+  { id: "00s", label: "2000년대생" },
+  { id: "10s", label: "2010년대생~" },
 ]
 
 const QUESTION_COUNTS: { value: number | "unlimited"; label: string }[] = [
   { value: 10, label: "10문제" },
   { value: 20, label: "20문제" },
   { value: 30, label: "30문제" },
-  { value: "unlimited", label: "무제한 풀기" },
+  { value: "unlimited", label: "모든 문제 풀기" },
 ]
 
 export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: GameSettingsModalProps) {
   const router = useRouter()
   
-  // 기본 선택값 세팅
   const [selectedDecades, setSelectedDecades] = useState<string[]>(["90s", "00s"])
   const [selectedCount, setSelectedCount] = useState<number | "unlimited">(10)
   const [streamerMode, setStreamerMode] = useState(false)
@@ -49,7 +48,6 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
       return
     }
 
-    // 쿼리 파라미터로 설정값 넘기기
     const params = new URLSearchParams({
       decades: selectedDecades.join(","),
       count: selectedCount.toString(),
@@ -69,7 +67,7 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
         <div className="flex items-center justify-between p-5 border-b border-border bg-muted/30">
           <div>
             <h2 className="text-xl font-bold">{topicTitle}</h2>
-            <p className="text-sm text-muted-foreground mt-1">게임 설정을 선택해주세요</p>
+            {/* 부제목(게임 설정을 선택해주세요) 삭제됨 */}
           </div>
           <button 
             onClick={onClose}
@@ -79,60 +77,70 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
           </button>
         </div>
 
-        <div className="p-5 space-y-6">
+        <div className="p-6 flex flex-col gap-8">
           {/* 연령대 선택 */}
-          <div className="space-y-3">
+          <div className="flex flex-col gap-3">
             <label className="text-sm font-semibold text-foreground">타겟 연령대 (복수 선택 가능)</label>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {DECADES.map(d => (
                 <button
                   key={d.id}
                   onClick={() => toggleDecade(d.id)}
-                  className={`py-2 text-sm font-medium rounded-lg border transition-all ${
+                  className={`py-2 text-[13px] font-semibold rounded-lg border transition-all ${
                     selectedDecades.includes(d.id)
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-background text-muted-foreground border-border hover:border-primary/50"
+                      ? "bg-orange-500 text-white border-orange-500 shadow-sm"
+                      : "bg-background text-muted-foreground border-border hover:border-orange-500/50 hover:text-foreground"
                   }`}
                 >
                   {d.label}
                 </button>
               ))}
             </div>
+            <p className="text-xs text-muted-foreground/80 pl-1 font-medium">
+              * 해당 연령대에 가장 핫했던 추억의 문제들이 우선 제공됩니다.
+            </p>
           </div>
 
           {/* 문제 수 선택 */}
-          <div className="space-y-3">
-            <label className="text-sm font-semibold text-foreground">문제 수</label>
+          <div className="flex flex-col gap-3">
+            <div className="flex items-baseline justify-between">
+              <label className="text-sm font-semibold text-foreground">문제 수</label>
+              <span className="text-[11px] text-muted-foreground">선택한 문제 수 내에서 무작위 출제</span>
+            </div>
             <div className="grid grid-cols-2 gap-2">
               {QUESTION_COUNTS.map(q => (
                 <button
                   key={q.value}
                   onClick={() => setSelectedCount(q.value)}
-                  className={`py-2.5 text-sm font-medium rounded-lg border transition-all ${
+                  className={`py-2.5 text-sm font-semibold rounded-lg border transition-all ${
                     selectedCount === q.value
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-background text-muted-foreground border-border hover:border-primary/50"
+                      ? "bg-orange-500 text-white border-orange-500 shadow-sm"
+                      : "bg-background text-muted-foreground border-border hover:border-orange-500/50 hover:text-foreground"
                   }`}
                 >
                   {q.label}
                 </button>
               ))}
             </div>
+            {selectedCount === "unlimited" && (
+              <p className="text-xs text-orange-500/90 pl-1 font-medium leading-relaxed">
+                * '모든 문제 풀기'는 문제가 모두 소진되거나 중간에 종료 버튼을 누르면 결산됩니다. 로그인한 유저는 나중에 이어서 풀 수 있습니다.
+              </p>
+            )}
           </div>
 
           {/* 스트리머 모드 */}
-          <div className="flex items-center justify-between p-4 rounded-xl border border-border bg-muted/20">
+          <div className="flex items-center justify-between p-4 rounded-xl border border-border bg-muted/20 mt-2">
             <div className="flex items-center gap-3">
               <div className={`p-2 rounded-lg ${streamerMode ? 'bg-orange-500/20 text-orange-500' : 'bg-muted text-muted-foreground'}`}>
                 <MonitorPlay className="w-5 h-5" />
               </div>
               <div>
-                <p className="font-semibold text-sm">스트리머 모드 <span className="text-[10px] bg-muted px-1.5 py-0.5 rounded text-muted-foreground ml-1">준비중</span></p>
-                <p className="text-xs text-muted-foreground mt-0.5">치지직/숲 실시간 채팅 투표 연동</p>
+                <p className="font-semibold text-sm">치지직/숲 실시간 채팅 투표 연동 <span className="text-[10px] bg-muted px-1.5 py-0.5 rounded text-muted-foreground ml-1">준비중</span></p>
+                <p className="text-xs text-muted-foreground mt-0.5">스트리머 전용 모드</p>
               </div>
             </div>
             
-            {/* 토글 스위치 (현재는 비활성화 강제) */}
             <button 
               disabled
               onClick={() => setStreamerMode(!streamerMode)}
@@ -148,10 +156,10 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
         </div>
 
         {/* 하단 시작 버튼 */}
-        <div className="p-5 pt-2">
+        <div className="p-5 pt-0 mt-2">
           <button 
             onClick={handleStart}
-            className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold hover:opacity-90 transition-opacity active:scale-[0.98]"
+            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-orange-500 text-white font-bold text-base shadow-lg hover:bg-orange-600 transition-colors active:scale-[0.98]"
           >
             <Play className="w-5 h-5 fill-current" />
             게임 시작하기
