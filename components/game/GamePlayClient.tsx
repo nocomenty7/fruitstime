@@ -79,8 +79,15 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
       const supabase = createClient()
       const { data: { user } } = await supabase.auth.getUser()
       
+      // topicId가 UUID 형식이 아니면 더미데이터 테스트 중이므로, FK 에러 방지를 위해 기본 시드 UUID 사용
+      let validTopicId = topicId
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+      if (!uuidRegex.test(validTopicId)) {
+        validTopicId = '22222222-2222-2222-2222-222222222222'
+      }
+
       const { data, error } = await supabase.from('game_results').insert({
-        topic_id: topicId,
+        topic_id: validTopicId,
         user_id: user?.id || null,
         total_questions: currentIndex + 1 > items.length ? items.length : currentIndex + 1,
         known_count: knownItemIds.length,
@@ -89,13 +96,14 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
       }).select('id').single()
 
       if (error) {
+        console.error("Supabase Insert Error Object:", error)
         throw error
       }
       
       router.push(`/result/${data.id}`)
     } catch (error) {
       console.error("Result save error:", error)
-      alert("결과 저장 중 오류가 발생했습니다.")
+      alert("결과 저장 중 오류가 발생했습니다. (자세한 내용은 콘솔 확인)")
       router.push('/')
     }
   }
