@@ -69,7 +69,6 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
             <h2 className="text-xl font-extrabold tracking-tight">이거 알면 최소 ㅇㅇ년대생</h2>
             <div className="flex items-center gap-2 mt-1.5">
               <p className="text-[15px] font-bold text-orange-500">{topicTitle}</p>
-              <span className="text-xs text-muted-foreground font-semibold">(총 150문제)</span>
             </div>
           </div>
           <button 
@@ -109,9 +108,12 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
           {/* 문제 수 선택 */}
           <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-foreground">출제 문제 수</label>
+              <div className="flex items-center gap-1.5">
+                <label className="text-sm font-semibold text-foreground">출제 문제 수</label>
+                <span className="text-xs text-orange-500 font-bold">(총 150문제)</span>
+              </div>
               <p className="text-[11.5px] text-muted-foreground/90 font-medium leading-relaxed break-keep">
-                * 선택한 문제 수 내에서 무작위 출제되며, '모든 문제 풀기'는 문제 소진 시 및 종료 버튼 클릭 시 종료됩니다. 로그인한 경우에 한하여 향후 이어서 진행 가능합니다.
+                * 문제는 랜덤한 순서로 출제되며, '모든 문제 풀기'는 문제 소진 혹은 종료 버튼 클릭 시 종료됩니다. 또한 로그인한 경우에 한하여 중복없이 향후 이어서 진행 가능합니다.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-2 mt-1">
