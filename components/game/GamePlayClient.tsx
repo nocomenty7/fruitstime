@@ -39,8 +39,10 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
   }
 
   const handleEndGame = () => {
-    alert("게임이 종료되었습니다! (향후 결과 페이지로 이동)")
-    router.push('/')
+    if (window.confirm("게임을 종료하시겠습니까?\n종료 시 현재까지의 기록으로 결과를 확인합니다.")) {
+      alert("게임이 종료되었습니다! (향후 결과 페이지로 이동)")
+      router.push('/')
+    }
   }
 
   const handleReport = () => {
@@ -67,7 +69,7 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
       } else {
         setCurrentIndex(prev => prev + 1)
       }
-    }, 700)
+    }, 1500)
   }
 
   if (!currentItem) {
@@ -131,12 +133,12 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
         {isRevealing && revealType && (
           <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
             <div className={`
-              animate-in zoom-in-50 fade-in duration-200 
+              animate-in zoom-in-[0.3] slide-in-from-top-12 fade-in duration-300 ease-out
               flex flex-col items-center justify-center
-              w-64 h-64 sm:w-72 sm:h-72 rounded-full shadow-2xl backdrop-blur-sm border-8
+              w-64 h-64 sm:w-72 sm:h-72 rounded-full shadow-2xl backdrop-blur-sm border-[10px]
               ${revealType === 'know' ? 'border-orange-500 bg-orange-500/20 text-orange-500' : 'border-gray-500 bg-gray-500/20 text-gray-500'}
             `}>
-              <span className="text-5xl sm:text-6xl font-black -rotate-12 drop-shadow-lg">
+              <span className="text-6xl sm:text-7xl font-black -rotate-[15deg] drop-shadow-2xl">
                 {revealType === 'know' ? '알아요!' : '몰라요.'}
               </span>
             </div>
