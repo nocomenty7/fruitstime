@@ -31,6 +31,7 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
   const [selectedDecades, setSelectedDecades] = useState<string[]>([])
   const [selectedCount, setSelectedCount] = useState<number | "unlimited">(10)
   const [streamerMode, setStreamerMode] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   if (!isOpen) return null
 
@@ -48,6 +49,7 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
       return
     }
 
+    setIsLoading(true)
     const params = new URLSearchParams({
       decades: selectedDecades.join(","),
       count: selectedCount.toString(),
@@ -163,10 +165,23 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
         <div className="p-5 pt-0 mt-2">
           <button 
             onClick={handleStart}
-            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-orange-500 text-white font-bold text-base shadow-lg hover:bg-orange-600 transition-colors active:scale-[0.98]"
+            disabled={isLoading}
+            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-orange-500 text-white font-bold text-base shadow-lg hover:bg-orange-600 transition-colors active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            <Play className="w-5 h-5 fill-current" />
-            게임 시작하기
+            {isLoading ? (
+              <>
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                데이터 불러오는 중...
+              </>
+            ) : (
+              <>
+                <Play className="w-5 h-5 fill-current" />
+                게임 시작하기
+              </>
+            )}
           </button>
         </div>
       </div>
