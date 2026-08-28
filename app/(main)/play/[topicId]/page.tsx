@@ -54,22 +54,18 @@ export default async function PlayPage({
         id: "m1",
         topic_id: topicId,
         title: "이 미니카, 골목길에서 어떻게 부르셨나요?",
-        hint: "블랙모터 하나면 골목길 제패 가능했음",
         media_type: "image",
         media_url: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=600&auto=format&fit=crop",
-        target_decade: "90s",
-        level: 1,
+        target_decades: ["90s"],
         created_at: new Date().toISOString()
       },
       {
         id: "m2",
         topic_id: topicId,
         title: "이 오프닝 노래, 어느 애니메이션일까요?",
-        hint: null,
         media_type: "youtube",
         media_url: "https://www.youtube.com/watch?v=R97jEoh4n2g",
-        target_decade: "90s",
-        level: 2,
+        target_decades: ["90s", "00s"],
         created_at: new Date().toISOString()
       }
     ]

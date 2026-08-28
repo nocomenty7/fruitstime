@@ -4,14 +4,14 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { X, Check, Search, Flag } from "lucide-react"
 import { MediaRenderer } from "./MediaRenderer"
+import { createClient } from "@/lib/supabase/client"
 
 interface GameItem {
   id: string
   title: string
-  hint: string | null
   media_type: string
   media_url: string | null
-  target_decade: string
+  target_decades: string[]
 }
 
 interface GamePlayClientProps {
@@ -38,10 +38,71 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
     return decades.map(d => map[d] || d).join(", ")
   }
 
+  const [isProcessing, setIsProcessing] = useState(false)
+
+  const processResult = async () => {
+    setIsProcessing(true)
+    
+    // 1. 내가 '알아!' 라고 답변한 문항 필터링
+    const knownItemIds = Object.keys(answers).filter(id => answers[id])
+    const knownItems = items.filter(item => knownItemIds.includes(item.id))
+    
+    // 2. 연령 빈도수 계산
+    const decadeCounts: Record<string, number> = {}
+    knownItems.forEach(item => {
+      const decadesArray = item.target_decades || []
+      decadesArray.forEach(d => {
+        decadeCounts[d] = (decadeCounts[d] || 0) + 1
+      })
+    })
+
+    // 가장 높은 빈도수의 연령대 찾기
+    let maxCount = -1
+    let predictedDecade = "00s" // 기본값
+    for (const [decade, count] of Object.entries(decadeCounts)) {
+      if (count > maxCount) {
+        maxCount = count
+        predictedDecade = decade
+      }
+    }
+
+    // 3. 예측 연령 맵핑 및 팩폭 멘트 생성
+    const map: any = { "80s": "1980년대생", "90s": "1990년대생", "00s": "2000년대생", "10s": "2010년대생" }
+    const predictedAgeGroup = map[predictedDecade] || "판별 불가"
+    
+    let dopamineTitle = "요즘 트렌드를 섭렵한 인싸"
+    if (predictedDecade === "80s") dopamineTitle = "허리가 뻐근한 진성 레트로 마스터"
+    if (predictedDecade === "90s") dopamineTitle = "밀레니엄 낭만파 고인물"
+    if (predictedDecade === "00s") dopamineTitle = "디지털 네이티브 Z세대"
+
+    try {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      const { data, error } = await supabase.from('game_results').insert({
+        topic_id: topicId,
+        user_id: user?.id || null,
+        total_questions: currentIndex + 1 > items.length ? items.length : currentIndex + 1,
+        known_count: knownItemIds.length,
+        predicted_age_group: predictedAgeGroup,
+        dopamine_title: dopamineTitle
+      }).select('id').single()
+
+      if (error) {
+        throw error
+      }
+      
+      router.push(`/result/${data.id}`)
+    } catch (error) {
+      console.error("Result save error:", error)
+      alert("결과 저장 중 오류가 발생했습니다.")
+      router.push('/')
+    }
+  }
+
   const handleEndGame = () => {
     if (window.confirm("게임을 종료하시겠습니까?\n종료 시 현재까지의 기록으로 결과를 확인합니다.")) {
-      alert("게임이 종료되었습니다! (향후 결과 페이지로 이동)")
-      router.push('/')
+      processResult()
     }
   }
 
@@ -65,7 +126,8 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
       setRevealType(null)
       
       if (currentIndex + 1 >= totalQuestions || currentIndex + 1 >= items.length) {
-        handleEndGame()
+        // 배열 끝에 도달 시 바로 결과 도출 시작
+        processResult()
       } else {
         setCurrentIndex(prev => prev + 1)
       }
@@ -87,8 +149,17 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
   const progressPercentage = ((currentIndex) / totalQuestions) * 100
 
   return (
-    <div className="flex flex-col h-full max-w-5xl mx-auto w-full">
+    <div className="flex flex-col h-full max-w-5xl mx-auto w-full relative">
       
+      {/* 로딩 오버레이 */}
+      {isProcessing && (
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm animate-in fade-in">
+          <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mb-4" />
+          <h2 className="text-xl font-bold text-foreground">결과 분석 중...</h2>
+          <p className="text-sm text-muted-foreground mt-2">당신의 연령대를 판별하고 있습니다!</p>
+        </div>
+      )}
+
       {/* 상단 헤더 & 게이지 바 */}
       <div className="px-5 py-3 flex flex-col gap-3 shrink-0">
         <div className="flex items-start justify-between gap-4">
