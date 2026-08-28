@@ -133,13 +133,13 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
         {isRevealing && revealType && (
           <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
             <div className={`
-              animate-in zoom-in-0 slide-in-from-top-8 fade-in-0 duration-300 ease-out fill-mode-forwards
+              animate-in zoom-in-50 fade-in duration-200 
               flex flex-col items-center justify-center
-              w-64 h-64 sm:w-72 sm:h-72 rounded-full shadow-2xl backdrop-blur-sm border-[10px]
+              w-64 h-64 sm:w-72 sm:h-72 rounded-full shadow-2xl backdrop-blur-sm border-8
               ${revealType === 'know' ? 'border-orange-500 bg-orange-500/20 text-orange-500' : 'border-gray-500 bg-gray-500/20 text-gray-500'}
             `}>
-              <span className="text-6xl sm:text-7xl font-black -rotate-[15deg] drop-shadow-2xl">
-                {revealType === 'know' ? '알아요!' : '몰라요.'}
+              <span className="text-5xl sm:text-6xl font-black -rotate-12 drop-shadow-lg">
+                {revealType === 'know' ? '알아!' : '몰라'}
               </span>
             </div>
           </div>
@@ -164,24 +164,24 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
 
       {/* 하단 버튼 영역 */}
       <div className="px-5 shrink-0 grid grid-cols-2 gap-3 sm:gap-4 pb-10 sm:pb-12">
-        {/* 알아요! 버튼 (왼쪽) */}
+        {/* 알아! 버튼 (왼쪽) */}
         <button 
           onClick={() => handleAnswer(true)}
           disabled={isRevealing}
           className="flex flex-col items-center justify-center gap-1.5 py-4 sm:py-5 rounded-2xl bg-orange-500 hover:bg-orange-600 border-2 border-transparent transition-all active:scale-95 disabled:opacity-50 shadow-md shadow-orange-500/20"
         >
           <Check className="w-8 h-8 text-white stroke-[3px]" />
-          <span className="font-extrabold text-lg sm:text-xl text-white">알아요!</span>
+          <span className="font-extrabold text-lg sm:text-xl text-white">알아!</span>
         </button>
 
-        {/* 몰라요. 버튼 (오른쪽) */}
+        {/* 몰라 버튼 (오른쪽) */}
         <button 
           onClick={() => handleAnswer(false)}
           disabled={isRevealing}
           className="flex flex-col items-center justify-center gap-1.5 py-4 sm:py-5 rounded-2xl bg-muted hover:bg-muted/80 border-2 border-transparent hover:border-border transition-all active:scale-95 disabled:opacity-50 group shadow-sm"
         >
           <Search className="w-7 h-7 text-muted-foreground group-hover:text-foreground transition-colors" />
-          <span className="font-extrabold text-lg sm:text-xl text-muted-foreground group-hover:text-foreground transition-colors">몰라요.</span>
+          <span className="font-extrabold text-lg sm:text-xl text-muted-foreground group-hover:text-foreground transition-colors">몰라</span>
         </button>
       </div>
 

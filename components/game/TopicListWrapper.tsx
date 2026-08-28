@@ -35,7 +35,7 @@ export function TopicListWrapper({ topics }: Props) {
             </h2>
           </div>
           <p className="hidden sm:inline-block text-sm font-medium text-muted-foreground pb-0.5">
-            연령대별 다양한 주제에 대해 나는 안다 vs 모른다
+            연령대별 다양한 주제에 대해 나는 알아 vs 몰라
           </p>
         </div>
         <Link 
@@ -49,7 +49,7 @@ export function TopicListWrapper({ topics }: Props) {
       
       {/* 모바일에서만 보이는 설명 텍스트 */}
       <p className="sm:hidden text-sm font-medium text-muted-foreground mb-4 pl-1">
-        연령대별 다양한 주제에 대해 나는 안다 vs 모른다
+        연령대별 다양한 주제에 대해 나는 알아 vs 몰라
       </p>
 
       {/* 2줄 나열 그리드 (GameRowSection과 100% 동일) */}
