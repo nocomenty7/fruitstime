@@ -18,7 +18,7 @@ const DECADES = [
   { id: "10s", label: "10년대" },
 ]
 
-const QUESTION_COUNTS = [
+const QUESTION_COUNTS: { value: number | "unlimited"; label: string }[] = [
   { value: 10, label: "10문제" },
   { value: 20, label: "20문제" },
   { value: 30, label: "30문제" },
