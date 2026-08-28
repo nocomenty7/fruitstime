@@ -28,7 +28,7 @@ const QUESTION_COUNTS: { value: number | "unlimited"; label: string }[] = [
 export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: GameSettingsModalProps) {
   const router = useRouter()
   
-  const [selectedDecades, setSelectedDecades] = useState<string[]>(["90s", "00s"])
+  const [selectedDecades, setSelectedDecades] = useState<string[]>([])
   const [selectedCount, setSelectedCount] = useState<number | "unlimited">(10)
   const [streamerMode, setStreamerMode] = useState(false)
 

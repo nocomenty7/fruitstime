@@ -69,7 +69,7 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
       } else {
         setCurrentIndex(prev => prev + 1)
       }
-    }, 1500)
+    }, 2000)
   }
 
   if (!currentItem) {
@@ -133,7 +133,7 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
         {isRevealing && revealType && (
           <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
             <div className={`
-              animate-in zoom-in-[0.3] slide-in-from-top-12 fade-in duration-300 ease-out
+              animate-in zoom-in-0 slide-in-from-top-8 fade-in-0 duration-300 ease-out fill-mode-forwards
               flex flex-col items-center justify-center
               w-64 h-64 sm:w-72 sm:h-72 rounded-full shadow-2xl backdrop-blur-sm border-[10px]
               ${revealType === 'know' ? 'border-orange-500 bg-orange-500/20 text-orange-500' : 'border-gray-500 bg-gray-500/20 text-gray-500'}
