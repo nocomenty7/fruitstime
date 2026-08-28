@@ -9,7 +9,7 @@ interface MediaRendererProps {
 export function MediaRenderer({ type, url, alt }: MediaRendererProps) {
   if (!type || type === 'null' || !url) {
     return (
-      <div className="w-full aspect-video bg-muted/20 flex items-center justify-center rounded-2xl border border-border/10">
+      <div className="w-full h-full bg-muted/20 flex items-center justify-center rounded-2xl">
         <span className="text-muted-foreground/50 font-medium">이미지가 없습니다</span>
       </div>
     )
@@ -17,7 +17,7 @@ export function MediaRenderer({ type, url, alt }: MediaRendererProps) {
 
   if (type === 'image') {
     return (
-      <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg border border-border/10 bg-black/40">
+      <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-sm">
         <Image
           src={url}
           alt={alt || 'Game Item Media'}
@@ -31,7 +31,6 @@ export function MediaRenderer({ type, url, alt }: MediaRendererProps) {
   }
 
   if (type === 'youtube') {
-    // 유튜브 URL에서 비디오 ID 추출 (예: https://www.youtube.com/watch?v=XXXX 또는 https://youtu.be/XXXX)
     let videoId = ""
     try {
       const urlObj = new URL(url)
@@ -40,16 +39,14 @@ export function MediaRenderer({ type, url, alt }: MediaRendererProps) {
       } else if (urlObj.hostname.includes('youtu.be')) {
         videoId = urlObj.pathname.slice(1)
       }
-    } catch (e) {
-      // 파싱 에러 시 fallback
-    }
+    } catch (e) {}
 
     if (!videoId) {
       return <div className="p-4 bg-destructive/20 text-destructive text-sm rounded-xl">유효하지 않은 유튜브 링크입니다.</div>
     }
 
     return (
-      <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg border border-border/10 bg-black">
+      <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-sm bg-black">
         <iframe
           src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -61,7 +58,7 @@ export function MediaRenderer({ type, url, alt }: MediaRendererProps) {
   }
 
   return (
-    <div className="p-4 bg-muted text-muted-foreground text-sm rounded-xl flex justify-center items-center aspect-video">
+    <div className="p-4 bg-muted text-muted-foreground text-sm rounded-xl flex justify-center items-center h-full">
       지원하지 않는 미디어 타입입니다.
     </div>
   )

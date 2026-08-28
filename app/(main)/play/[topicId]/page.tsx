@@ -81,12 +81,7 @@ export default async function PlayPage({
   const finalItems = targetCount === "unlimited" ? shuffled : shuffled.slice(0, targetCount)
 
   return (
-    <div className="dark bg-[#121212] min-h-[calc(100vh-64px)] w-full flex flex-col items-center">
-      {/* 
-        Tailwind 'dark' 클래스를 강제 주입하여 이 라우트 내부에서는 
-        항상 다크 테마 느낌이 나도록 하거나 
-        bg-[#121212] 와 text-white 로 직접 통제합니다.
-      */}
+    <div className="w-full flex flex-col bg-background h-[calc(100vh-64px)] overflow-hidden">
       <GamePlayClient 
         topicId={topicId}
         topicTitle={topicTitle}
