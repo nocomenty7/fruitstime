@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 import { BannerCarousel } from "@/components/sections/BannerCarousel"
 import { TopicListWrapper } from "@/components/game/TopicListWrapper"
 
+export const dynamic = "force-dynamic"
 export const revalidate = 0 // 메인 페이지는 최신 주제를 항상 불러오도록 캐시 비활성화
 
 export default async function Home() {
@@ -29,7 +30,12 @@ export default async function Home() {
         </div>
 
         {/* 클라이언트 컴포넌트로 데이터 넘기기 (모달 컨트롤용) */}
-        {topics && topics.length > 0 ? (
+        {error ? (
+          <div className="p-10 border border-destructive rounded-2xl flex flex-col items-center justify-center text-destructive bg-destructive/10">
+            <span className="font-bold">데이터를 불러오는 중 오류가 발생했습니다.</span>
+            <span className="text-sm mt-2">{error.message}</span>
+          </div>
+        ) : topics && topics.length > 0 ? (
           <TopicListWrapper topics={topics} />
         ) : (
           <div className="p-10 border border-dashed rounded-2xl flex items-center justify-center text-muted-foreground">
