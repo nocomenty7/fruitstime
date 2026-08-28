@@ -40,15 +40,25 @@ export default async function Home() {
     <div className="flex flex-col gap-10 pb-16 pt-2">
       <BannerCarousel />
 
-      <section className="flex flex-col gap-6">
-        <div className="flex flex-col">
-          <h2 className="text-2xl font-black tracking-tight flex items-center gap-2">
-            <span>🔥</span> 이거 알면 최소 ㅇㅇ년대생
-          </h2>
-          <p className="text-muted-foreground text-sm mt-1">
-            원하는 주제를 선택하고 당신의 세대를 증명해보세요!
-          </p>
+      <section className="flex flex-col gap-6 w-full">
+        <div className="mb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div className="flex items-end gap-3">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl sm:text-3xl leading-none">🍓</span>
+              <h2 className="text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
+                이거 알면 최소 ㅇㅇ년대생
+              </h2>
+            </div>
+            <p className="hidden sm:inline-block text-sm font-medium text-muted-foreground pb-0.5">
+              원하는 주제를 선택하고 당신의 세대를 증명해보세요!
+            </p>
+          </div>
         </div>
+        
+        {/* 모바일에서만 보이는 설명 텍스트 */}
+        <p className="sm:hidden text-sm font-medium text-muted-foreground mb-4 pl-1 -mt-4">
+          원하는 주제를 선택하고 당신의 세대를 증명해보세요!
+        </p>
 
         {error ? (
           <div className="p-10 border border-destructive rounded-2xl flex flex-col items-center justify-center text-destructive bg-destructive/10">

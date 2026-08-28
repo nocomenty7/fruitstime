@@ -19,12 +19,12 @@ export function TopicListWrapper({ topics }: Props) {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5">
         {topics.map(topic => (
           <button
             key={topic.id}
             onClick={() => setSelectedTopic(topic)}
-            className="group flex flex-col gap-2 text-left transition-transform duration-300 hover:scale-[1.02] active:scale-95"
+            className="group flex flex-col gap-2 text-left transition-transform duration-300 hover:scale-[1.02] active:scale-95 w-full"
           >
             <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-muted border border-border shadow-sm">
               <Image
@@ -32,7 +32,7 @@ export function TopicListWrapper({ topics }: Props) {
                 alt={topic.title}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span className="bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg">
@@ -40,7 +40,7 @@ export function TopicListWrapper({ topics }: Props) {
                 </span>
               </div>
             </div>
-            <h3 className="font-bold text-base leading-tight group-hover:text-primary transition-colors px-1">
+            <h3 className="mt-1 font-bold text-base leading-tight group-hover:text-primary transition-colors line-clamp-2 px-1">
               {topic.title}
             </h3>
           </button>
