@@ -66,12 +66,12 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
         {/* 헤더 */}
         <div className="flex items-center justify-between p-5 border-b border-border bg-muted/30">
           <div>
-            <h2 className="text-xl font-bold">{topicTitle}</h2>
-            {/* 부제목(게임 설정을 선택해주세요) 삭제됨 */}
+            <h2 className="text-xl font-extrabold tracking-tight">이거 알면 최소 ㅇㅇ년대생</h2>
+            <p className="text-[15px] font-bold text-orange-500 mt-1.5">{topicTitle}</p>
           </div>
           <button 
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-muted transition-colors"
+            className="p-2 rounded-full hover:bg-muted transition-colors self-start -mt-1"
           >
             <X className="w-5 h-5 text-muted-foreground" />
           </button>
@@ -80,7 +80,12 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
         <div className="p-6 flex flex-col gap-8">
           {/* 연령대 선택 */}
           <div className="flex flex-col gap-3">
-            <label className="text-sm font-semibold text-foreground">타겟 연령대 (복수 선택 가능)</label>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-semibold text-foreground">타겟 연령대 (복수 선택 가능)</label>
+              <p className="text-xs text-muted-foreground/90 font-medium">
+                * 해당 연령대에 가장 핫했던 추억의 문제들이 제공됩니다.
+              </p>
+            </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {DECADES.map(d => (
                 <button
@@ -96,18 +101,20 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
                 </button>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground/80 pl-1 font-medium">
-              * 해당 연령대에 가장 핫했던 추억의 문제들이 우선 제공됩니다.
-            </p>
           </div>
 
           {/* 문제 수 선택 */}
           <div className="flex flex-col gap-3">
-            <div className="flex items-baseline justify-between">
-              <label className="text-sm font-semibold text-foreground">문제 수</label>
-              <span className="text-[11px] text-muted-foreground">선택한 문제 수 내에서 무작위 출제</span>
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center gap-1.5">
+                <label className="text-sm font-semibold text-foreground">문제 수</label>
+                <span className="text-xs text-orange-500 font-bold">(총 150문제)</span>
+              </div>
+              <p className="text-[11.5px] text-muted-foreground/90 font-medium leading-relaxed break-keep">
+                * 선택한 문제 수 내에서 무작위 출제되며, '모든 문제 풀기'의 경우, 문제가 소진되거나 중간에 종료 버튼을 누르면 종료됩니다. 로그인한 경우에 한하여 향후 이어서 진행 가능합니다.
+              </p>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2 mt-1">
               {QUESTION_COUNTS.map(q => (
                 <button
                   key={q.value}
@@ -122,11 +129,6 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
                 </button>
               ))}
             </div>
-            {selectedCount === "unlimited" && (
-              <p className="text-xs text-orange-500/90 pl-1 font-medium leading-relaxed">
-                * '모든 문제 풀기'는 문제가 모두 소진되거나 중간에 종료 버튼을 누르면 결산됩니다. 로그인한 유저는 나중에 이어서 풀 수 있습니다.
-              </p>
-            )}
           </div>
 
           {/* 스트리머 모드 */}
