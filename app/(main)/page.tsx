@@ -79,8 +79,9 @@ export default async function Home() {
 
   // game_topics 테이블에서 주제 목록 가져오기 (DB 데이터 무시하고 더미 데이터 20개 강제 주입)
   // (대표님 확인용도 뷰를 위해 DB 토픽 1개를 무시하고 임시로 20개의 더미배열을 모두 표출)
+  // 인기순(plays)으로 정렬하여 최대 20개 노출
   const error: any = null;
-  const mixedTopics = MOCK_TOPICS_20;
+  const mixedTopics = [...MOCK_TOPICS_20].sort((a, b) => b.plays - a.plays).slice(0, 20);
 
   return (
     <div className="flex flex-col gap-10 pb-16 pt-2">

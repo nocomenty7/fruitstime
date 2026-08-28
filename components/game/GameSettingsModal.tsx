@@ -67,7 +67,10 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
         <div className="flex items-center justify-between p-5 border-b border-border bg-muted/30">
           <div>
             <h2 className="text-xl font-extrabold tracking-tight">이거 알면 최소 ㅇㅇ년대생</h2>
-            <p className="text-[15px] font-bold text-orange-500 mt-1.5">{topicTitle}</p>
+            <div className="flex items-center gap-2 mt-1.5">
+              <p className="text-[15px] font-bold text-orange-500">{topicTitle}</p>
+              <span className="text-xs text-muted-foreground font-semibold">(총 150문제)</span>
+            </div>
           </div>
           <button 
             onClick={onClose}
@@ -83,7 +86,7 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-semibold text-foreground">타겟 연령대 (복수 선택 가능)</label>
               <p className="text-xs text-muted-foreground/90 font-medium">
-                * 해당 연령대에 가장 핫했던 추억의 문제들이 제공됩니다.
+                * 해당 연령대가 가장 공감할만한 추억의 문제들이 제공됩니다.
               </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -106,12 +109,9 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
           {/* 문제 수 선택 */}
           <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-1.5">
-              <div className="flex items-center gap-1.5">
-                <label className="text-sm font-semibold text-foreground">문제 수</label>
-                <span className="text-xs text-orange-500 font-bold">(총 150문제)</span>
-              </div>
+              <label className="text-sm font-semibold text-foreground">출제 문제 수</label>
               <p className="text-[11.5px] text-muted-foreground/90 font-medium leading-relaxed break-keep">
-                * 선택한 문제 수 내에서 무작위 출제되며, '모든 문제 풀기'의 경우, 문제가 소진되거나 중간에 종료 버튼을 누르면 종료됩니다. 로그인한 경우에 한하여 향후 이어서 진행 가능합니다.
+                * 선택한 문제 수 내에서 무작위 출제되며, '모든 문제 풀기'는 문제 소진 시 및 종료 버튼 클릭 시 종료됩니다. 로그인한 경우에 한하여 향후 이어서 진행 가능합니다.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-2 mt-1">
