@@ -101,11 +101,11 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
             </div>
           </div>
           <div className="flex items-center gap-3 mt-1 shrink-0">
-            <button onClick={handleReport} className="text-[13px] font-medium text-muted-foreground/60 hover:text-muted-foreground transition-colors">
-              문제 신고
+            <button onClick={handleReport} className="text-[13px] font-bold text-muted-foreground hover:text-foreground transition-colors">
+              문제신고
             </button>
             <span className="text-muted-foreground/30 text-[10px]">|</span>
-            <button onClick={handleEndGame} className="text-[13px] font-medium text-muted-foreground/60 hover:text-muted-foreground transition-colors">
+            <button onClick={handleEndGame} className="text-[13px] font-bold text-muted-foreground hover:text-foreground transition-colors">
               종료
             </button>
           </div>
@@ -157,11 +157,6 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground break-keep leading-tight animate-in slide-in-from-bottom-2 fade-in duration-300">
             {currentItem.title}
           </h2>
-          {currentItem.hint && (
-            <p className="text-sm sm:text-base text-muted-foreground bg-muted px-4 py-1.5 rounded-full">
-              💡 {currentItem.hint}
-            </p>
-          )}
         </div>
       </div>
 

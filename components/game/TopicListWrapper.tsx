@@ -70,7 +70,7 @@ export function TopicListWrapper({ topics }: Props) {
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span className="bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-                  설정하기
+                  시작하기
                 </span>
               </div>
             </div>
