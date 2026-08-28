@@ -93,18 +93,24 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
         known_count: knownItemIds.length,
         predicted_age_group: predictedAgeGroup,
         dopamine_title: dopamineTitle
-      }).select('id').single()
+      }).select()
 
       if (error) {
         console.error("Supabase Insert Error Object:", error)
         throw error
       }
       
-      router.push(`/result/${data.id}`)
-    } catch (error) {
+      const resultId = data && data.length > 0 ? data[0].id : null
+      
+      if (!resultId) {
+        throw new Error("결과는 저장되었으나 ID를 반환받지 못했습니다.")
+      }
+      
+      router.push(`/result/${resultId}`)
+    } catch (error: any) {
       console.error("Result save error:", error)
-      alert("결과 저장 중 오류가 발생했습니다. (자세한 내용은 콘솔 확인)")
-      router.push('/')
+      alert("결과 저장 중 오류가 발생했습니다.\n(에러: " + (error?.message || '알 수 없는 오류') + ")")
+      setIsProcessing(false) // 에러 시 로딩 해제하여 재시도 가능하게 함
     }
   }
 
