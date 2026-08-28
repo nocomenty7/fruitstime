@@ -85,7 +85,7 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
   const progressPercentage = ((currentIndex) / totalQuestions) * 100
 
   return (
-    <div className="flex flex-col h-full max-w-4xl mx-auto w-full">
+    <div className="flex flex-col h-full max-w-5xl mx-auto w-full">
       
       {/* 상단 헤더 & 게이지 바 */}
       <div className="px-5 py-3 flex flex-col gap-3 shrink-0">
@@ -100,12 +100,13 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
               <span className="text-orange-500">{formatDecades()}</span>
             </div>
           </div>
-          <div className="flex items-center gap-1 mt-1 shrink-0">
-            <button onClick={handleReport} className="p-2 hover:bg-muted rounded-full transition-colors group" title="문제 신고">
-              <Flag className="w-5 h-5 text-muted-foreground group-hover:text-foreground" />
+          <div className="flex items-center gap-3 mt-1 shrink-0">
+            <button onClick={handleReport} className="text-[13px] font-medium text-muted-foreground/60 hover:text-muted-foreground transition-colors">
+              문제 신고
             </button>
-            <button onClick={handleEndGame} className="p-2 hover:bg-muted rounded-full transition-colors group" title="종료하기">
-              <X className="w-6 h-6 text-muted-foreground group-hover:text-foreground" />
+            <span className="text-muted-foreground/30 text-[10px]">|</span>
+            <button onClick={handleEndGame} className="text-[13px] font-medium text-muted-foreground/60 hover:text-muted-foreground transition-colors">
+              종료
             </button>
           </div>
         </div>
@@ -165,7 +166,7 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
       </div>
 
       {/* 하단 버튼 영역 */}
-      <div className="px-5 shrink-0 grid grid-cols-2 gap-3 sm:gap-4 pb-6">
+      <div className="px-5 shrink-0 grid grid-cols-2 gap-3 sm:gap-4 pb-10 sm:pb-12">
         {/* 알아요! 버튼 (왼쪽) */}
         <button 
           onClick={() => handleAnswer(true)}
