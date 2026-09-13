@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { X, Check, Search, Flag } from "lucide-react"
 import { MediaRenderer } from "./MediaRenderer"
-import { saveGameResult } from "@/app/(main)/play/[topicId]/actions"
 
 interface GameItem {
   id: string
@@ -72,20 +71,26 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
     if (predictedDecade === "00s") dopamineTitle = "디지털 네이티브 Z세대"
 
     try {
-      // 서버 액션 호출 (네트워크/CORS 문제 원천 차단)
-      const res = await saveGameResult({
-        topic_id: topicId,
-        total_questions: currentIndex + 1 > items.length ? items.length : currentIndex + 1,
-        known_count: knownItemIds.length,
-        predicted_age_group: predictedAgeGroup,
-        dopamine_title: dopamineTitle
+      // API 라우트 호출 (가장 안정적이고 범용적인 fetch)
+      const res = await fetch('/api/result', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          topic_id: topicId,
+          total_questions: currentIndex + 1 > items.length ? items.length : currentIndex + 1,
+          known_count: knownItemIds.length,
+          predicted_age_group: predictedAgeGroup,
+          dopamine_title: dopamineTitle
+        })
       })
 
-      if (!res.success) {
-        throw new Error(res.error || "서버 통신 실패")
+      const data = await res.json()
+
+      if (!data.success) {
+        throw new Error(data.error || "서버 통신 실패")
       }
       
-      router.push(`/result/${res.resultId}`)
+      router.push(`/result/${data.resultId}`)
     } catch (error: any) {
       console.error("Result save error:", error)
       alert("결과 저장 중 오류가 발생했습니다.\n(에러: " + (error?.message || '알 수 없는 오류') + ")")
