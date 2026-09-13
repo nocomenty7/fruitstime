@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { X, Check, Search, Flag } from "lucide-react"
 import { MediaRenderer } from "./MediaRenderer"
-import { createClient } from "@/lib/supabase/client"
+import { saveGameResult } from "@/app/(main)/play/[topicId]/actions"
 
 interface GameItem {
   id: string
@@ -43,11 +43,9 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
   const processResult = async () => {
     setIsProcessing(true)
     
-    // 1. 내가 '알아!' 라고 답변한 문항 필터링
     const knownItemIds = Object.keys(answers).filter(id => answers[id])
     const knownItems = items.filter(item => knownItemIds.includes(item.id))
     
-    // 2. 연령 빈도수 계산
     const decadeCounts: Record<string, number> = {}
     knownItems.forEach(item => {
       const decadesArray = item.target_decades || []
@@ -56,9 +54,8 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
       })
     })
 
-    // 가장 높은 빈도수의 연령대 찾기
     let maxCount = -1
-    let predictedDecade = "00s" // 기본값
+    let predictedDecade = "00s"
     for (const [decade, count] of Object.entries(decadeCounts)) {
       if (count > maxCount) {
         maxCount = count
@@ -66,7 +63,6 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
       }
     }
 
-    // 3. 예측 연령 맵핑 및 팩폭 멘트 생성
     const map: any = { "80s": "1980년대생", "90s": "1990년대생", "00s": "2000년대생", "10s": "2010년대생" }
     const predictedAgeGroup = map[predictedDecade] || "판별 불가"
     
@@ -76,41 +72,24 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
     if (predictedDecade === "00s") dopamineTitle = "디지털 네이티브 Z세대"
 
     try {
-      const supabase = createClient()
-      const { data: { user } } = await supabase.auth.getUser()
-      
-      // topicId가 UUID 형식이 아니면 더미데이터 테스트 중이므로, FK 에러 방지를 위해 기본 시드 UUID 사용
-      let validTopicId = topicId
-      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
-      if (!uuidRegex.test(validTopicId)) {
-        validTopicId = '22222222-2222-2222-2222-222222222222'
-      }
-
-      const { data, error } = await supabase.from('game_results').insert({
-        topic_id: validTopicId,
-        user_id: user?.id || null,
+      // 서버 액션 호출 (네트워크/CORS 문제 원천 차단)
+      const res = await saveGameResult({
+        topic_id: topicId,
         total_questions: currentIndex + 1 > items.length ? items.length : currentIndex + 1,
         known_count: knownItemIds.length,
         predicted_age_group: predictedAgeGroup,
         dopamine_title: dopamineTitle
-      }).select()
+      })
 
-      if (error) {
-        console.error("Supabase Insert Error Object:", error)
-        throw error
+      if (!res.success) {
+        throw new Error(res.error || "서버 통신 실패")
       }
       
-      const resultId = data && data.length > 0 ? data[0].id : null
-      
-      if (!resultId) {
-        throw new Error("결과는 저장되었으나 ID를 반환받지 못했습니다.")
-      }
-      
-      router.push(`/result/${resultId}`)
+      router.push(`/result/${res.resultId}`)
     } catch (error: any) {
       console.error("Result save error:", error)
       alert("결과 저장 중 오류가 발생했습니다.\n(에러: " + (error?.message || '알 수 없는 오류') + ")")
-      setIsProcessing(false) // 에러 시 로딩 해제하여 재시도 가능하게 함
+      setIsProcessing(false)
     }
   }
 
