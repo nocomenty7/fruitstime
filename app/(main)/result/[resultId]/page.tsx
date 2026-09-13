@@ -2,11 +2,10 @@ import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { ResultClient } from "@/components/game/ResultClient"
 
-export default async function ResultPage({ 
-  params 
-}: { 
-  params: { resultId: string } 
+export default async function ResultPage(props: { 
+  params: Promise<{ resultId: string }> 
 }) {
+  const params = await props.params
   const { resultId } = params
   const supabase = await createClient()
 

@@ -3,13 +3,12 @@ import { createClient } from "@/lib/supabase/server"
 import { GamePlayClient } from "@/components/game/GamePlayClient"
 
 // 서버 컴포넌트: 파라미터 파싱 및 DB 페칭
-export default async function PlayPage({ 
-  params,
-  searchParams
-}: { 
-  params: { topicId: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+export default async function PlayPage(props: { 
+  params: Promise<{ topicId: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
+  const params = await props.params
+  const searchParams = await props.searchParams
   const { topicId } = params
   
   // 파라미터 파싱
