@@ -31,7 +31,7 @@ export function TopicListWrapper({ topics }: Props) {
           <div className="flex items-center gap-2">
             <span className="text-2xl sm:text-3xl leading-none">🍓</span>
             <h2 className="text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
-              이거 알면 최소 ㅇㅇ년대생
+              이거 아는 사람?
             </h2>
           </div>
           <p className="hidden sm:inline-block text-sm font-medium text-muted-foreground pb-0.5">
