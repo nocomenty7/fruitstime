@@ -74,7 +74,10 @@ export function TopicListWrapper({ topics }: Props) {
                 </span>
               </div>
             </div>
-            <div className="flex flex-col gap-1 w-full px-1">
+            <div className="flex flex-col gap-1.5 flex-1 w-full max-w-full">
+              <span className="text-[11px] sm:text-xs font-bold text-orange-500 bg-orange-500/10 px-2 py-0.5 rounded-full w-fit">
+                이거 아는 사람?
+              </span>
               <h3 className="font-bold text-base leading-tight group-hover:text-primary transition-colors line-clamp-2">
                 {topic.title}
               </h3>

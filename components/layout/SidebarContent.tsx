@@ -5,7 +5,7 @@ import { Search, Trophy, Clock, Info, Bell, PlusSquare } from "lucide-react";
 const FRUIT_GAMES = [
   {
     id: "know-or-not",
-    label: "이거 알면 최소 ㅇㅇ년대생",
+    label: "이거 아는 사람?",
     emoji: "🍓",
     href: "/know-or-not"
   },

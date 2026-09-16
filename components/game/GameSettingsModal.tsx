@@ -68,7 +68,7 @@ export function GameSettingsModal({ isOpen, onClose, topicId, topicTitle }: Game
         {/* 헤더 */}
         <div className="flex items-center justify-between p-5 border-b border-border bg-muted/30">
           <div>
-            <h2 className="text-xl font-extrabold tracking-tight">이거 알면 최소 ㅇㅇ년대생</h2>
+            <h2 className="text-xl font-extrabold tracking-tight">이거 아는 사람?</h2>
             <div className="flex items-center gap-2 mt-1.5">
               <p className="text-[15px] font-bold text-orange-500">{topicTitle}</p>
             </div>

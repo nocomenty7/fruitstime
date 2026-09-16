@@ -163,7 +163,7 @@ export function GamePlayClient({ topicId, topicTitle, items, targetCount, decade
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-1">
             <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground line-clamp-1">
-              이거 알면 최소 ㅇㅇ년대생
+              이거 아는 사람?
             </h1>
             <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base font-bold text-muted-foreground">
               <span>{topicTitle}</span>

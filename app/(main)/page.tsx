@@ -48,28 +48,13 @@ const MOCK_KIRO = [
   { id: "k10", title: "과거로 돌아가기 vs 미래로 가기", thumbnailUrl: "https://images.unsplash.com/photo-1447015237013-0e80b2786dea?q=80&w=600&auto=format&fit=crop", plays: 340000, createdAt: "2024.03.11" }
 ];
 
-// 임시 모의 데이터 (사용자 요청 20개 주제)
-const MOCK_TOPICS_20 = [
-  { id: "t1", title: "🍭 학교 앞 간식 & 분식", thumbnail_url: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=600&auto=format&fit=crop", plays: 125000, created_at_display: "2024.12.01" },
-  { id: "t2", title: "🏫 학교생활 & 교실 추억", thumbnail_url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=600&auto=format&fit=crop", plays: 340000, created_at_display: "2024.11.28" },
-  { id: "t3", title: "🪀 장난감 & 골목길 놀이", thumbnail_url: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=600&auto=format&fit=crop", plays: 89000, created_at_display: "2024.11.15" },
-  { id: "t4", title: "🎮 비디오 & PC 게임", thumbnail_url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop", plays: 560000, created_at_display: "2024.11.10" },
-  { id: "t5", title: "📺 TV 만화 & 애니메이션", thumbnail_url: "https://images.unsplash.com/photo-1614088685112-0a760b71a3c8?q=80&w=600&auto=format&fit=crop", plays: 120000, created_at_display: "2024.10.05" },
-  { id: "t6", title: "🎪 레전드 TV 예능 & 코미디", thumbnail_url: "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?q=80&w=600&auto=format&fit=crop", plays: 67000, created_at_display: "2024.09.20" },
-  { id: "t7", title: "🎬 그 시절 드라마 & 영화", thumbnail_url: "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=600&auto=format&fit=crop", plays: 45000, created_at_display: "2024.08.12" },
-  { id: "t8", title: "🎤 레전드 가요 & 아이돌 무대", thumbnail_url: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=600&auto=format&fit=crop", plays: 230000, created_at_display: "2024.07.30" },
-  { id: "t9", title: "🎀 유행 캐릭터 & 팬시", thumbnail_url: "https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=600&auto=format&fit=crop", plays: 12000, created_at_display: "2024.06.18" },
-  { id: "t10", title: "📱 전자기기 & 하드웨어", thumbnail_url: "https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=600&auto=format&fit=crop", plays: 98000, created_at_display: "2024.05.02" },
-  { id: "t11", title: "🌐 인터넷 플랫폼 & 소통 문화", thumbnail_url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop", plays: 34000, created_at_display: "2024.04.14" },
-  { id: "t12", title: "👕 유행 패션 & 스타일", thumbnail_url: "https://images.unsplash.com/photo-1489987707023-afc6328ce788?q=80&w=600&auto=format&fit=crop", plays: 56000, created_at_display: "2024.03.22" },
-  { id: "t13", title: "😎 인터넷 밈 & 유행어", thumbnail_url: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=600&auto=format&fit=crop", plays: 89000, created_at_display: "2024.02.11" },
-  { id: "t14", title: "🍧 추억의 외식 & 아지트", thumbnail_url: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=600&auto=format&fit=crop", plays: 45000, created_at_display: "2024.01.05" },
-  { id: "t15", title: "👻 그 시절 미신 & 학교 괴담", thumbnail_url: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=600&auto=format&fit=crop", plays: 12000, created_at_display: "2023.12.20" },
-  { id: "t16", title: "🖍️ 다꾸 & 레전드 문구류", thumbnail_url: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?q=80&w=600&auto=format&fit=crop", plays: 34000, created_at_display: "2023.11.15" },
-  { id: "t17", title: "⚽ 레전드 스포츠 (오프라인)", thumbnail_url: "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=600&auto=format&fit=crop", plays: 78000, created_at_display: "2023.10.10" },
-  { id: "t18", title: "🖱️ 추억의 e스포츠", thumbnail_url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop", plays: 156000, created_at_display: "2023.09.05" },
-  { id: "t19", title: "📢 뇌리에 박힌 TV 광고 & CM송", thumbnail_url: "https://images.unsplash.com/photo-1601055903647-8f1ac8e379d8?q=80&w=600&auto=format&fit=crop", plays: 92000, created_at_display: "2023.08.20" },
-  { id: "t20", title: "🚨 그 시절 사건사고 & 대란", thumbnail_url: "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=600&auto=format&fit=crop", plays: 41000, created_at_display: "2023.07.12" }
+// 임시 모의 데이터 (사용자 요청 5개 주제로 통폐합)
+const MOCK_TOPICS = [
+  { id: "t1", title: "🏫 방과 후 핫플 & 먹거리", thumbnail_url: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=600&auto=format&fit=crop", plays: 340000, created_at_display: "2024.12.01" },
+  { id: "t2", title: "🎒 교실 풍경 & 아날로그 놀이", thumbnail_url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=600&auto=format&fit=crop", plays: 280000, created_at_display: "2024.11.28" },
+  { id: "t3", title: "📺 리모컨 쟁탈전 & 본방사수", thumbnail_url: "https://images.unsplash.com/photo-1614088685112-0a760b71a3c8?q=80&w=600&auto=format&fit=crop", plays: 210000, created_at_display: "2024.10.05" },
+  { id: "t4", title: "🕹️ 디지털 라이프 & 통신", thumbnail_url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop", plays: 156000, created_at_display: "2024.09.20" },
+  { id: "t5", title: "😎 대중문화 & 트렌드", thumbnail_url: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=600&auto=format&fit=crop", plays: 120000, created_at_display: "2024.08.12" }
 ];
 
 // ... (기존 모의 데이터들은 변경 없음) ...
@@ -81,7 +66,7 @@ export default async function Home() {
   // (대표님 확인용도 뷰를 위해 DB 토픽 1개를 무시하고 임시로 20개의 더미배열을 모두 표출)
   // 인기순(plays)으로 정렬하여 10개 노출
   const error: any = null;
-  const mixedTopics = [...MOCK_TOPICS_20].sort((a, b) => b.plays - a.plays).slice(0, 10);
+  const mixedTopics = [...MOCK_TOPICS].sort((a, b) => b.plays - a.plays).slice(0, 10);
 
   return (
     <div className="flex flex-col gap-10 pb-16 pt-2">
